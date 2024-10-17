@@ -2,7 +2,7 @@
   <div class="modal" v-if="isModal">
     <div class="inner">
       <h3>Detail</h3>
-      <p>{{ data[selectedMovie].title }}</p>
+      <p>{{ data[selectedMovie].title }} {{selectedMovie}}</p>
       <button @click="$emit('closeModal')">닫기</button>
     </div>
   </div>

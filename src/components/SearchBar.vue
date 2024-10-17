@@ -3,11 +3,16 @@
     <input
       type="search"
       placeholder="검색어를 입력해 주세요. "
-      @change="inputText = $event.target.value"
+      
+      @change="
+      inputText = $event.target.value;
+      $emit('searchMovie', $event.target.value);
+      $event.target.value=''
+      "
     />
-    <button>검색</button>
+    <button @click="$emit('searchMovie', $event.target.value);">검색</button>
   </div>
-  <p>{{ inputText }}</p>
+  
 </template>
 <script>
 export default {
@@ -18,22 +23,23 @@ export default {
     };
   },
   props: {
-    data: Array,
+    data_temp: Array,
   },
-  watch: {
-    inputText(name) {
-      //입력한 영화 제목이 데이터에 있는지 확인
-    
-      if (name) {
-        const searchMovie = this.data.filter((movie)=>{return movie.title ===name })
-        console.log(searchMovie)
-        
-      } else {
-        alert("해당하는 영화가 없습니다. ");
-      }
-      
-    },
-  },
+//   watch: {
+//     //입력한 영화 제목이 데이터에 있는지 확인
+//     inputText(name) {
+//       const findName = this.data_temp.filter((movie) => {
+//         return movie.title.includes(name);
+//       });
+//       if (findName.length == 0) {
+//         alert("해당하는 영화가 없습니다. ");
+//       } else {
+//         console.log(findName);
+//         // //해당되는 영화를 뿌려준다. // includes로 변경
+//         // this.datatemp = "$emit('findMovie', findName)";
+//       }
+//     },
+//   },
 };
 </script>
 <style scoped>
